@@ -68,3 +68,26 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# React login with Keycloak
+
+Based on the article [How to implement Keycloak authentication in React](https://blog.logrocket.com/implement-keycloak-authentication-react/).
+
+## Considerations
+
+### Issues with <React.StrictMode>
+
+I had to remove <React.StrictMode> to avoid an infinite loop on app start:
+- [react-keycloak issue #182](https://github.com/react-keycloak/react-keycloak/issues/182)
+- [react-keycloak issue #93](https://github.com/react-keycloak/react-keycloak/issues/93)
+
+### Keycloak client configuration
+
+The article uses Keycloak v15. It has been upgraded and tested up to v20.
+
+Besides following the instructions on the article, also configure in the client:
+- Root URL: http://localhost:3000/
+- Home URL: http://localhost:3000/
+- Valid redirect URIs: http://localhost:3000/*
+- Valid post logout redirect URIs: http://localhost:3000/*
+- Web origins: *
